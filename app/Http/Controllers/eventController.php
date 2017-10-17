@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
+use App\Models\Remind;
 use App\Managements\EventManagement;
 
 class eventController extends Controller
@@ -16,7 +17,10 @@ class eventController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $task = Task::all();
+        $remind = Remind::all();
+
+        return view('index', compact('task', 'remind'));
     }
 
     // Action de creation des evenements
