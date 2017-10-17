@@ -38,6 +38,10 @@ class eventController extends Controller
     {
         $management->update($event_type, $id, $data);
     }
+    public function deleteEvent(EventManagement $management, $event_type, $id)
+    {
+        $management->delete($event_type, $id);
+    }
 
     // Action des reminds
 
@@ -137,7 +141,7 @@ class eventController extends Controller
     */
     public function destroyTask($id)
     {
-        //
+        $this->deleteEvent(app()['EventManagement'], 'task', $id);
     }
 
     // Action des rappels
@@ -232,6 +236,6 @@ class eventController extends Controller
     */
     public function destroyRemind($id)
     {
-        //
+        $this->deleteEvent(app()['EventManagement'], 'remind', $id);
     }
 }

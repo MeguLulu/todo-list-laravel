@@ -63,4 +63,31 @@ class EventManagement
 
     }
   }
+
+  public function delete($event_type, $id)
+  {
+    switch ($event_type) {
+
+      case 'task':
+
+      $task = Task::find($id);
+
+      $task->delete();
+
+      return redirect()->route('index');
+
+      break;
+
+      case 'remind':
+
+      $remind = Remind::find($id);
+
+      $remind->delete();
+
+      return redirect()->route('index');
+
+      break;
+
+    }
+  }
 }
