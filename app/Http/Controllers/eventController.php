@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Task;
 
 class eventController extends Controller
 {
@@ -25,7 +27,7 @@ class eventController extends Controller
      */
     public function createTask()
     {
-        return view('task.create')
+        return view('task.create');
     }
 
     /**
@@ -36,7 +38,23 @@ class eventController extends Controller
      */
     public function storeTask(Request $request)
     {
-        //
+        // Validée les données
+        $this->validate($request, array(
+            'title' => 'required|max:255',
+            'begin' => 'required|date|before:end',
+            'end' => 'required|date|after:begin',
+        ));
+
+        // Stocker les données
+
+        $task = new Task;
+        $task->title = $request->title;
+        $task->begin = $request->begin;
+        $task->end = $request->end;
+
+        $task->save();
+
+        return redirect()->route('index');
     }
 
     /**

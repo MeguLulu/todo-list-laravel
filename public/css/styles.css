@@ -20,3 +20,14 @@ h1 {
 .nav-text {
   line-height: 32px;
 }
+/* Formulaire */
+
+/* Formulaire de creation */
+
+.date-form{
+  /*width: 300px;*/
+
+}
+.btn-form {
+  margin-top: 20px;
+}

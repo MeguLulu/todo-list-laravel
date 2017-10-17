@@ -5,6 +5,8 @@
     <title>Todo List</title>
     {{-- Bootstrap Css --}}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    {{-- DateTime Picker Bootstrap --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/smalot-bootstrap-datetimepicker/2.4.4/css/bootstrap-datetimepicker.min.css">
     {{-- Main Css --}}
     <link rel="stylesheet" href="/css/styles.css">
     {{-- Font Awesome --}}
@@ -13,6 +15,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     {{-- Bootstrap Js --}}
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {{-- DateTime Picker Js --}}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/smalot-bootstrap-datetimepicker/2.4.4/js/bootstrap-datetimepicker.min.js"></script>
     @section('stylesheet')
     @endsection
   </head>
@@ -37,5 +41,6 @@
     <footer>
 
     </footer>
+      @yield('javascript')
   </body>
 </html>

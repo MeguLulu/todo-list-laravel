@@ -32,7 +32,7 @@ Route::get('/', [
 |--------------------------------------------------------------------------
 */
 
-Route::post('/task/create', [
+Route::get('/task/create', [
     'uses' => 'eventController@createTask',
     'as' => 'task.create'
 ]);
@@ -41,7 +41,7 @@ Route::post('/task', [
     'uses' => 'eventController@storeTask',
     'as' => 'task.store'
 ]);
-Route::post('/task/edit', [
+Route::get('/task/edit', [
     'uses' => 'eventController@editTask',
     'as' => 'task.edit'
 ]);
@@ -60,7 +60,7 @@ Route::get('/task/{id}/delete', [
 |--------------------------------------------------------------------------
 */
 
-Route::post('/remind/create', [
+Route::get('/remind/create', [
     'uses' => 'eventController@createRemind',
     'as' => 'remind.create'
 ]);
@@ -69,7 +69,7 @@ Route::post('/remind', [
     'uses' => 'eventController@storeRemind',
     'as' => 'remind.store'
 ]);
-Route::post('/remind/edit', [
+Route::get('/remind/edit', [
     'uses' => 'eventController@editRemind',
     'as' => 'remind.edit'
 ]);
