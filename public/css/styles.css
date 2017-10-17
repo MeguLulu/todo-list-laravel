@@ -32,7 +32,42 @@ h1 {
   margin-top: 20px;
 }
 /* Affichage de la liste todo */
+.list-event {
+  margin: 0 auto;
+  padding: 0;
+  max-height: 390px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 5px 5px 0 5px;
+  border-left: none;
+  border-right: none;
+}
+.li-item{
+  list-style: none;
+  background-color: rgba(0, 0, 0, 0.05);
 
+  padding: 10px 15px 10px 25px;
+  border: 1px solid #CCC;
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
+  margin-bottom: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.li-remind {
+  background-image: linear-gradient( 90deg, #f0ad4e 10px, #EEE 10px, #EEE 11px, transparent 11px);
+}
+.li-task {
+  background-image: linear-gradient( 90deg, #5bc0de 10px, #EEE 10px, #EEE 11px, transparent 11px);
+}
+.btn-align {
+  margin-left:15px;
+}
+.btn-action-group {
+  margin-top:5px;
+}
 /* Body de la liste */
 .panel-fix {
   height: 200px;

@@ -9,15 +9,52 @@
   {{-- Todo List Panel --}}
   <div class="col-md-8 col-md-offset-2 block-todo">
 
-    <a href="#" id="createTask" class="btn btn-success btn-sm">Create Task</a>
+    <a href="#" id="createTask" class="btn btn-info btn-sm">Create Task</a>
     <a href="#" id="createRemind" class="btn btn-warning btn-sm">Create Remind</a>
+    {{-- Todo Final Edition --}}
+    <div class="content-event">
+      <ul class="list-event">
+        @foreach ($to_do_list as $event)
+          <li
+          class="li-item
+          @if ($event instanceof App\Models\Task) li-task
+          @elseif ($event instanceof App\Models\Remind) li-remind @endif">
+            {{$event->title}}
+
+            @if ($event instanceof App\Models\Task)
+              <span class="label label-info pull-right">Task</span>
+            @elseif ($event instanceof App\Models\Remind)
+              <span class="label label-warning pull-right">Remind</span>
+            @endif
+            <br>
+            <div class="row">
+            <span class="col-md-4">Date : {{ (date("l d F Y", strtotime($event->date()) ) ) }}</span>
+            @if ($event instanceof App\Models\Task)
+              <span class="col-md-4">Start at : {{ (date("g a", strtotime($event->date()) ) ) }}</span>
+              <span class="col-md-4">End at : {{ (date("g a", strtotime($event->end) ) ) }}</span>
+            @endif
+          </div>
+          <div class="row btn-action-group">
+            <a href="#" class="btn btn-xs btn-success btn-align">Edit</a>
+            <a href="#" class="btn btn-xs btn-danger">Delete</a>
+          </div>
+          </li>
+          {{-- <hr> --}}
+        @endforeach
+      </ul>
+    </div>
     @foreach ($to_do_list as $event)
 
       <div class="panel panel-primary">
         <div class="panel-heading">
+          @if ($event instanceof App\Models\Task)
+            <span class="label label-info">Task</span>
+          @elseif ($event instanceof App\Models\Remind)
+            <span class="label label-warning">Remind</span>
+          @endif
           <h4>{{$event->title}}</h4>
-          <h4>{{$event->date()}}</h4>
-          {{dump($event->date())}}
+          <h4>{{ (date("l d F Y", strtotime($event->date()) ) ) }}</h4>
+
         </div>
         <div class="panel-body panel-fix">
 
