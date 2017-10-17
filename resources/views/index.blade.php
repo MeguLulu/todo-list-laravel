@@ -7,8 +7,11 @@
   </h2>
   {{-- Todo List Panel --}}
   <div class="col-md-8 col-md-offset-2 block-todo">
-    <a href="#" id="createTask">Create Task</a>
-    <a href="#" id="createRemind">Create Remind</a>
+
+
+
+    <a href="#" id="createTask"><button type="button" class="btn btn-success">Create Task</button></a>
+    <a href="#" id="createRemind"><button type="button" class="btn btn-warning">Create Remind</button></a>
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h4>Ma liste todo</h4>

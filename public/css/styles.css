@@ -10,6 +10,9 @@ h1 {
   font-size: 24px;
   text-align: center;
 }
+.modal-body {
+  margin:15px;
+}
 /* Configuration de la navbar */
 .nav-css {
   min-height: 32px;
@@ -20,14 +23,11 @@ h1 {
 .nav-text {
   line-height: 32px;
 }
+
 /* Formulaire */
 
 /* Formulaire de creation */
 
-.date-form{
-  /*width: 300px;*/
-
-}
 .btn-form {
   margin-top: 20px;
 }
