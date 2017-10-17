@@ -11,17 +11,16 @@ use App\Managements\EventManagement;
 class eventController extends Controller
 {
     /**
-     * Affiche la liste des tâches et rappels
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Affiche la liste des tâches et rappels
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function index()
     {
         $task = Task::all();
         $remind = Remind::all();
-
-        $to_do_list = $task->merge($remind)->sortBy(function($event) {
-            return $event->date();
+        $to_do_list = $task->merge($remind)->sortBy(function($e) {
+            return $e->date();
         });
 
         return view('index', [
@@ -43,21 +42,21 @@ class eventController extends Controller
     // Action des reminds
 
     /**
-     * Affiche le formulaire pour créer une tâche
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Affiche le formulaire pour créer une tâche
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function createTask()
     {
         return view('task.create');
     }
 
     /**
-     * Stock en mémoire la création de la tâche
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    * Stock en mémoire la création de la tâche
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
     public function storeTask(Request $request)
     {
 
@@ -80,35 +79,35 @@ class eventController extends Controller
     }
 
     /**
-     * Affiche une tâche précise
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Affiche une tâche précise
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function showTask($id)
     {
         //
     }
 
     /**
-     * Affiche le formulaire pour éditer une tâche précise
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Affiche le formulaire pour éditer une tâche précise
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function editTask($id)
     {
-         $task = Task::find($id);
+        $task = Task::find($id);
         return view('task.edit')->withTask($task);
     }
 
     /**
-     * Met à jour dans la base donnée la tâche modifié
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Met à jour dans la base donnée la tâche modifié
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function updateTask(Request $request, $id)
     {
 
@@ -131,11 +130,11 @@ class eventController extends Controller
     }
 
     /**
-     * Retire la tâche sélectionner de la base de données
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Retire la tâche sélectionner de la base de données
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function destroyTask($id)
     {
         //
@@ -144,21 +143,21 @@ class eventController extends Controller
     // Action des rappels
 
     /**
-     * Affiche le formulaire pour créer un rappel
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Affiche le formulaire pour créer un rappel
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function createRemind()
     {
         return view('remind.create');
     }
 
     /**
-     * Stock en mémoire la création de le rappel
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    * Stock en mémoire la création de le rappel
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
     public function storeRemind(Request $request)
     {
         // Validée les données
@@ -178,45 +177,59 @@ class eventController extends Controller
     }
 
     /**
-     * Affiche un rappel précis
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Affiche un rappel précis
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function showRemind($id)
     {
         //
     }
 
     /**
-     * Affiche le formulaire pour éditer un rappel précise
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Affiche le formulaire pour éditer un rappel précise
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function editRemind($id)
     {
-        //
+        $remind = Remind::find($id);
+        return view('task.edit')->withTask($remind);
     }
 
     /**
-     * Met à jour dans la base donnée le rappel modifié
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Met à jour dans la base donnée le rappel modifié
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function updateRemind(Request $request, $id)
     {
-        //
+        // Validée les données
+        $this->validate($request, array(
+            'title' => 'required|max:255',
+            'day' => 'required|date|after:yesterday',
+        ));
+
+        // save the data to the database
+        $this->updateEvent(app()['EventManagement'], 'remind', $id,
+        [
+            'title' => $request->input('title'),
+            'day' => $request->input('day'),
+        ]);
+
+        return redirect()->route('index');
     }
 
     /**
-     * Retire le rappel sélectionner de la base de données
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Retire le rappel sélectionner de la base de données
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function destroyRemind($id)
     {
         //

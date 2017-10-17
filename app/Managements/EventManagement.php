@@ -42,7 +42,6 @@ class EventManagement
       case 'task':
 
       $task = Task::find($id);
-      // dd($task);
       $task->title = $data['title'];
       $task->begin = $data['begin'];
       $task->end = $data['end'];
