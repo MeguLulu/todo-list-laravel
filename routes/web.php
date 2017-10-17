@@ -41,7 +41,7 @@ Route::post('/task', [
     'uses' => 'eventController@storeTask',
     'as' => 'task.store'
 ]);
-Route::get('/task/edit', [
+Route::get('/task/edit/{id}', [
     'uses' => 'eventController@editTask',
     'as' => 'task.edit'
 ]);

@@ -20,13 +20,24 @@ class eventController extends Controller
         $task = Task::all();
         $remind = Remind::all();
 
-        return view('index', compact('task', 'remind'));
+        $to_do_list = $task->merge($remind)->sortBy(function($event) {
+            return $event->date();
+        });
+
+        return view('index', [
+            'to_do_list' => $to_do_list
+
+        ]);
     }
 
     // Action de creation des evenements
     public function createEvent(EventManagement $management, $event_type, $data = array())
     {
         $management->create($event_type, $data);
+    }
+    public function updateEvent(EventManagement $management, $event_type, $id, $data = array())
+    {
+        $management->update($event_type, $id, $data);
     }
 
     // Action des reminds
@@ -87,7 +98,8 @@ class eventController extends Controller
      */
     public function editTask($id)
     {
-        //
+         $task = Task::find($id);
+        return view('task.edit')->withTask($task);
     }
 
     /**
@@ -99,7 +111,23 @@ class eventController extends Controller
      */
     public function updateTask(Request $request, $id)
     {
-        //
+
+        // Validée les données
+        $this->validate($request, array(
+            'title' => 'required|max:255',
+            'begin' => 'required|date|before:end',
+            'end' => 'required|date|after:begin',
+        ));
+
+        // save the data to the database
+        $this->updateEvent(app()['EventManagement'], 'task', $id,
+        [
+            'title' => $request->input('title'),
+            'begin' => $request->input('begin'),
+            'end' => $request->input('end')
+        ]);
+
+        return redirect()->route('index');
     }
 
     /**

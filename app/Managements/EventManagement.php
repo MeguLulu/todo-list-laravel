@@ -33,9 +33,35 @@ class EventManagement
 
       break;
 
-      default:
-        # code...
-        break;
+    }
+  }
+  public function update($event_type, $id, $data)
+  {
+    switch ($event_type) {
+
+      case 'task':
+
+      $task = Task::find($id);
+      // dd($task);
+      $task->title = $data['title'];
+      $task->begin = $data['begin'];
+      $task->end = $data['end'];
+
+      return $task->save();
+
+      break;
+
+      case 'remind':
+
+      $remind = Remind::find($id);
+
+      $remind->title = $data['title'];
+      $remind->day = $data['day'];
+
+      return $remind->save();
+
+      break;
+
     }
   }
 }
