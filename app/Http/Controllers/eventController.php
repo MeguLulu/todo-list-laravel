@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
+use App\Managements\EventManagement;
 
 class eventController extends Controller
 {
@@ -16,6 +17,12 @@ class eventController extends Controller
     public function index()
     {
         return view('index');
+    }
+
+    // Action de creation des evenements
+    public function createEvent(EventManagement $management, $event_type, $data = array())
+    {
+        $management->create($event_type, $data);
     }
 
     // Action des reminds
@@ -38,6 +45,7 @@ class eventController extends Controller
      */
     public function storeTask(Request $request)
     {
+
         // Validée les données
         $this->validate($request, array(
             'title' => 'required|max:255',
@@ -46,13 +54,12 @@ class eventController extends Controller
         ));
 
         // Stocker les données
-
-        $task = new Task;
-        $task->title = $request->title;
-        $task->begin = $request->begin;
-        $task->end = $request->end;
-
-        $task->save();
+        $this->createEvent(app()['EventManagement'], 'task',
+        [
+            'title' => $request->title,
+            'begin' => $request->begin,
+            'end' => $request->end
+        ]);
 
         return redirect()->route('index');
     }
