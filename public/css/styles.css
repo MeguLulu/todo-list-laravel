@@ -1,0 +1,22 @@
+/* Configuration général du css */
+.content {
+  margin-top: 32px;
+}
+h1 {
+  text-align: center;
+  font-weight: bold;
+}
+.sub-h1 {
+  font-size: 24px;
+  text-align: center;
+}
+/* Configuration de la navbar */
+.nav-css {
+  min-height: 32px;
+  background-color: rgba(0, 0, 0, 0.82);
+  color: white;
+  text-align: center;
+}
+.nav-text {
+  line-height: 32px;
+}
