@@ -3,6 +3,7 @@
 namespace App\Managements;
 
 use App\Models\Task;
+use App\Models\Remind;
 
 class EventManagement
 
@@ -23,8 +24,14 @@ class EventManagement
       break;
 
       case 'remind':
-        # code...
-        break;
+
+      $remind = new Remind;
+      $remind->title = $data['title'];
+      $remind->day = $data['day'];
+
+      return $remind->save();
+
+      break;
 
       default:
         # code...

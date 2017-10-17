@@ -118,7 +118,7 @@ class eventController extends Controller
      */
     public function createRemind()
     {
-        //
+        return view('remind.create');
     }
 
     /**
@@ -129,7 +129,20 @@ class eventController extends Controller
      */
     public function storeRemind(Request $request)
     {
-        //
+        // Validée les données
+        $this->validate($request, array(
+            'title' => 'required|max:255',
+            'day' => 'required|date|after:yesterday',
+        ));
+
+        // Stocker les données
+        $this->createEvent(app()['EventManagement'], 'remind',
+        [
+            'title' => $request->title,
+            'day' => $request->day
+        ]);
+
+        return redirect()->route('index');
     }
 
     /**
