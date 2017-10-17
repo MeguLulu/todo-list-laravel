@@ -7,77 +7,147 @@ use Illuminate\Http\Request;
 class eventController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Affiche la liste des tâches et rappels
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return view('index');
     }
 
+    // Action des reminds
+
     /**
-     * Show the form for creating a new resource.
+     * Affiche le formulaire pour créer une tâche
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createTask()
     {
-        //
+        return view('task.create')
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Stock en mémoire la création de la tâche
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeTask(Request $request)
     {
         //
     }
 
     /**
-     * Display the specified resource.
+     * Affiche une tâche précise
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showTask($id)
     {
         //
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Affiche le formulaire pour éditer une tâche précise
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editTask($id)
     {
         //
     }
 
     /**
-     * Update the specified resource in storage.
+     * Met à jour dans la base donnée la tâche modifié
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateTask(Request $request, $id)
     {
         //
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Retire la tâche sélectionner de la base de données
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroyTask($id)
+    {
+        //
+    }
+
+    // Action des rappels
+
+    /**
+     * Affiche le formulaire pour créer un rappel
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createRemind()
+    {
+        //
+    }
+
+    /**
+     * Stock en mémoire la création de le rappel
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeRemind(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Affiche un rappel précis
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showRemind($id)
+    {
+        //
+    }
+
+    /**
+     * Affiche le formulaire pour éditer un rappel précise
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editRemind($id)
+    {
+        //
+    }
+
+    /**
+     * Met à jour dans la base donnée le rappel modifié
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateRemind(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Retire le rappel sélectionner de la base de données
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyRemind($id)
     {
         //
     }
