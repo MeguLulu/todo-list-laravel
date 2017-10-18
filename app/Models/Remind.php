@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Remind extends Model
 {
+  protected $fillable = [
+    'title',
+    'day'
+  ];
   // Renvoie la date pour le tri
   public function date() {
     return $this->day;

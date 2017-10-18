@@ -14,10 +14,12 @@ class EventManagement
 
       case 'task':
 
-      $task = new Task;
-      $task->title = $data['title'];
-      $task->begin = $data['begin'];
-      $task->end = $data['end'];
+      // $task = new Task;
+      // $task->title = $data['title'];
+      // $task->begin = $data['begin'];
+      // $task->end = $data['end'];
+
+      $task = Task::create($data);
 
       return $task->save();
 
@@ -25,9 +27,11 @@ class EventManagement
 
       case 'remind':
 
-      $remind = new Remind;
-      $remind->title = $data['title'];
-      $remind->day = $data['day'];
+      // $remind = new Remind;
+      // $remind->title = $data['title'];
+      // $remind->day = $data['day'];
+
+      $remind = Remind::create($data);
 
       return $remind->save();
 
