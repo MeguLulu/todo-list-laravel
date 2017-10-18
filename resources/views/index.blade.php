@@ -69,7 +69,7 @@
                 class="editRemind btn btn-xs btn-success btn-align"
                 title="Edit">
                 Edit</a>
-                <a href="#" class="btn btn-xs btn-danger deleteRemind" data-id='{{$event->id}}'>Delete</a>
+                <a href="#" class="btn btn-xs btn-danger deleteRemindBtnModal" data-id='{{$event->id}}'>Delete</a>
               </div>
             </li>
           @endif
@@ -86,6 +86,7 @@
     @include('modals.taskEditModal')
     @include('modals.taskDeleteModal')
     @include('modals.remindEditModal')
+    @include('modals.remindDeleteModal')
   @endif
 @endsection
 @section('javascript')

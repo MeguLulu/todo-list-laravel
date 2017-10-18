@@ -36,6 +36,35 @@ $('.deleteTaskBtnModal').click(function() {
   return false;
 });
 
+$('.deleteRemindBtnModal').click(function() {
+  var data_id = $(this).attr('data-id');
+  console.log(data_id);
+  $('#remindDeleteModal').modal();
+  $('.deleteRemind').unbind('click');
+  $('.deleteRemind').click(function(e) {
+    var token = $('meta[name="csrf-token"]').attr('content');
+    var data_id = $('.deleteRemindBtnModal').attr('data-id');
+    $.ajax({
+      url: '/remind/'+ data_id +'/delete',
+      type: "post",
+      data: {
+        "_token": token,
+        "_method":"DELETE"
+      },
+      success: function( msg ) {
+        $("[data-type='remind'][data-id="+data_id+"]").remove();
+        $('.menu-todo').append('<div class="alert alert-success"><p>Your remind has been deleted with success.</p></div>');
+        $('#remindDeleteModal').modal('toggle');
+      },
+      error: function( data ) {
+        $('.menu-todo').append('<div class="alert alert-danger"><p>Cannot delete your remind. (error)</p></div>');
+      }
+    });
+  });
+
+  return false;
+});
+
 $('.editTask').click(function() {
   $('#taskEditModal').modal();
   var $id = $(this).attr('data-id');
