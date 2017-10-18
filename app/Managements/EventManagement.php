@@ -15,7 +15,7 @@ class EventManagement
       case 'task':
 
       $task = Task::create($data);
-      
+
       session()->flash('success', 'Your task has been created with success.');
       return $task->save();
 

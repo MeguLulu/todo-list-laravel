@@ -10,7 +10,7 @@
         Are you sure you want to delete this task ?
       </div>
       <div class="modal-footer">
-        <a href='#' target='_self' class='btn btn btn-danger'></a>
+        <a href='#' class='btn btn btn-danger deleteTask' data-id='{{$event->id}}'>Delete</a>
       </div>
     </div>
   </div>

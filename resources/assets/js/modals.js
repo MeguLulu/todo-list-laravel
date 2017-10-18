@@ -7,6 +7,10 @@ $('#createRemind').click(function() {
   $('#remindModal').modal();
 });
 
+$('.deleteBtnModal').click(function() {
+  $('#taskDeleteModal').modal();
+});
+
 $('.deleteTask').on('click', function(e) {
   var token = $('meta[name="csrf-token"]').attr('content');
   var data_id = $('.deleteTask').attr('data-id');
