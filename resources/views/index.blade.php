@@ -49,7 +49,7 @@
                 class="editTask btn btn-xs btn-success btn-align"
                 title="Edit">
                 Edit</a>
-                <a href="#" class="btn btn-xs btn-danger deleteBtnModal" data-id='{{$event->id}}'>Delete</a>
+                <a href="#" class="btn btn-xs btn-danger deleteTaskBtnModal" data-id='{{$event->id}}'>Delete</a>
               </div>
             </li>
           @elseif ($event instanceof App\Models\Remind)

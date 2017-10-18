@@ -31708,28 +31708,30 @@ $('#createRemind').click(function () {
   $('#remindModal').modal();
 });
 
-$('.deleteBtnModal').click(function () {
+$('.deleteTaskBtnModal').click(function () {
+  var data_id = $(this).attr('data-id');
+  console.log(data_id);
   $('#taskDeleteModal').modal();
-});
-
-$('.deleteTask').on('click', function (e) {
-  var token = $('meta[name="csrf-token"]').attr('content');
-  var data_id = $('.deleteBtnModal').attr('data-id');
-  $.ajax({
-    url: '/task/' + data_id + '/delete',
-    type: "post",
-    data: {
-      "_token": token,
-      "_method": "DELETE"
-    },
-    success: function success(msg) {
-      $("[data-type='task'][data-id=" + data_id + "]").remove();
-      $('.menu-todo').append('<div class="alert alert-success"><p>Your task has been deleted with success.</p></div>');
-      $('#taskDeleteModal').modal('toggle');
-    },
-    error: function error(data) {
-      $('.menu-todo').append('<div class="alert alert-danger"><p>Cannot delete your task. (error)</p></div>');
-    }
+  $('.deleteTask').unbind('click');
+  $('.deleteTask').click(function (e) {
+    var token = $('meta[name="csrf-token"]').attr('content');
+    var data_id = $('.deleteTaskBtnModal').attr('data-id');
+    $.ajax({
+      url: '/task/' + data_id + '/delete',
+      type: "post",
+      data: {
+        "_token": token,
+        "_method": "DELETE"
+      },
+      success: function success(msg) {
+        $("[data-type='task'][data-id=" + data_id + "]").remove();
+        $('.menu-todo').append('<div class="alert alert-success"><p>Your task has been deleted with success.</p></div>');
+        $('#taskDeleteModal').modal('toggle');
+      },
+      error: function error(data) {
+        $('.menu-todo').append('<div class="alert alert-danger"><p>Cannot delete your task. (error)</p></div>');
+      }
+    });
   });
 
   return false;

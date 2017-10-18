@@ -39,7 +39,6 @@ h1 {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   box-shadow: inset 1px 1px 0 white;
-  max-height: 550px;
 }
 .list-event {
   margin: 0 auto;
