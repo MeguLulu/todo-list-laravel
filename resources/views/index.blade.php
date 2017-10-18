@@ -17,6 +17,13 @@
           <p>{{session()->get('success')}}</p>
         </div>
       @endif
+      @if (session()->has('errors'))
+        <div class="alert alert-danger">
+          @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
+        </div>
+      @endif
     </div>
     {{-- Todo Final Edition --}}
     <div class="content-event">
@@ -24,12 +31,12 @@
         @foreach ($to_do_list as $event)
           @if ($event instanceof App\Models\Task)
             <li class="li-item li-task" data-type='task' data-id="{{$event->id}}">
-              {{$event->title}}
+              <strong>{{$event->title}}</strong>
               <span class="label label-info pull-right">Task</span>
               <div class="row">
-                <span class="col-md-4">Date : {{ (date("l d F Y", strtotime($event->date()) ) ) }}</span>
-                <span class="col-md-4">Start at : {{ (date("g a", strtotime($event->date()) ) ) }}</span>
-                <span class="col-md-4">End at : {{ (date("g a", strtotime($event->end) ) ) }}</span>
+                <span class="col-md-4"><strong>Date :</strong> {{ (date("l d F Y", strtotime($event->date()) ) ) }}</span>
+                <span class="col-md-4"><strong>Start at :</strong> {{ (date("g a", strtotime($event->date()) ) ) }}</span>
+                <span class="col-md-4"><strong>End at :</strong> {{ (date("g a", strtotime($event->end) ) ) }}</span>
               </div>
               <div class="row btn-action-group">
                 <a href="#"
@@ -47,10 +54,10 @@
             </li>
           @elseif ($event instanceof App\Models\Remind)
             <li class="li-item li-remind" data-type='remind' data-id="{{$event->id}}">
-              {{$event->title}}
+              <strong>{{$event->title}}</strong>
               <span class="label label-warning pull-right">Remind</span>
               <div class="row">
-                <span class="col-md-4">Date : {{ (date("l d F Y", strtotime($event->date()) ) ) }}</span>
+                <span class="col-md-8"><strong>Date :</strong> {{ (date("l d F Y", strtotime($event->date()) ) ) }}</span>
               </div>
               <div class="row btn-action-group">
                 <a href="#"

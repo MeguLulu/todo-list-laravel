@@ -83,17 +83,6 @@ class eventController extends Controller
     }
 
     /**
-    * Affiche une tâche précise
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function showTask($id)
-    {
-        //
-    }
-
-    /**
     * Affiche le formulaire pour éditer une tâche précise
     *
     * @param  int  $id
@@ -178,17 +167,6 @@ class eventController extends Controller
         ]);
 
         return redirect()->route('index');
-    }
-
-    /**
-    * Affiche un rappel précis
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function showRemind($id)
-    {
-        //
     }
 
     /**

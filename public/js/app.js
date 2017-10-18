@@ -31715,12 +31715,9 @@ $('.deleteBtnModal').click(function () {
 $('.deleteTask').on('click', function (e) {
   var token = $('meta[name="csrf-token"]').attr('content');
   var data_id = $('.deleteBtnModal').attr('data-id');
-  // alert('ok');
   $.ajax({
-    // url: '{{ url('/task') }}'+'/'+ $data_id +'/delete',
     url: '/task/' + data_id + '/delete',
     type: "post",
-    // data: { _method:"DELETE" },
     data: {
       "_token": token,
       "_method": "DELETE"

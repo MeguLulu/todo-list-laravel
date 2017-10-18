@@ -73,8 +73,6 @@ class EventManagement
 
       $task->delete();
 
-      // return redirect()->route('index');
-
       break;
 
       case 'remind':
@@ -82,9 +80,7 @@ class EventManagement
       $remind = Remind::find($id);
 
       $remind->delete();
-
-      // return redirect()->route('index');
-
+      
       break;
 
     }
