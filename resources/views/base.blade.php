@@ -4,8 +4,6 @@
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Todo List</title>
-    {{-- Bootstrap Css --}}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     {{-- DateTime Picker Bootstrap --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/smalot-bootstrap-datetimepicker/2.4.4/css/bootstrap-datetimepicker.min.css">
     {{-- Main Css --}}
@@ -17,7 +15,9 @@
     {{-- DateTime Picker Js --}}
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/smalot-bootstrap-datetimepicker/2.4.4/js/bootstrap-datetimepicker.min.js"></script>
   </head>
+
   <body>
+    {{-- Header du site --}}
     <header>
       <nav class="navbar navbar-default navbar-fixed-top nav-css">
         <div class="container">
@@ -25,19 +25,18 @@
         </div>
       </nav>
     </header>
-
+    {{-- Conteneur du site --}}
     <div class="content">
       <div class="container">
         <div class="row">
           @yield('content')
         </div>
       </div>
-
     </div>
-
+    
+    {{-- Pied de page du site --}}
     <footer>
-
     </footer>
-      @yield('javascript')
+    @yield('javascript')
   </body>
 </html>

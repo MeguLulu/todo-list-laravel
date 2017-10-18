@@ -13,6 +13,7 @@ h1 {
 .modal-body {
   margin:15px;
 }
+
 /* Configuration de la navbar */
 .nav-css {
   min-height: 32px;
@@ -24,14 +25,8 @@ h1 {
   line-height: 32px;
 }
 
-/* Formulaire */
-
-/* Formulaire de creation */
-
-.btn-form {
-  margin-top: 20px;
-}
 /* Affichage de la liste todo */
+
 .block-todo {
 
   background: whitesmoke;
@@ -40,6 +35,17 @@ h1 {
   border-radius: 5px;
   box-shadow: inset 1px 1px 0 white;
 }
+/* Header */
+.menu-todo {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 10px;
+}
+.alert{
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+/* li */
 .list-event {
   margin: 0 auto;
   padding: 0;
@@ -76,9 +82,12 @@ h1 {
 .btn-action-group {
   margin-top:5px;
 }
-/* Body de la liste */
-.panel-fix {
-  height: 200px;
-  overflow: scroll;
-  overflow-x: hidden;
+
+
+/* Modal Formulaire */
+
+/* Formulaire de creation */
+
+.btn-form {
+  margin-top: 20px;
 }

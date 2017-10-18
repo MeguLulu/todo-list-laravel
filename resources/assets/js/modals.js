@@ -1,4 +1,5 @@
-// Js pour afficher les modals
+// Affichage des formulaire de création d'un événement
+
 $('#createTask').click(function() {
   $('#taskModal').modal();
 });
@@ -7,6 +8,7 @@ $('#createRemind').click(function() {
   $('#remindModal').modal();
 });
 
+// Suppression des tâches
 $('.deleteTaskBtnModal').click(function() {
   var data_id = $(this).attr('data-id');
   console.log(data_id);
@@ -32,9 +34,10 @@ $('.deleteTaskBtnModal').click(function() {
       }
     });
   });
-
   return false;
 });
+
+// Suppression des Rappels
 
 $('.deleteRemindBtnModal').click(function() {
   var data_id = $(this).attr('data-id');
@@ -61,9 +64,10 @@ $('.deleteRemindBtnModal').click(function() {
       }
     });
   });
-
   return false;
 });
+
+// Edition des tâches
 
 $('.editTask').click(function() {
   $('#taskEditModal').modal();
@@ -76,6 +80,8 @@ $('.editTask').click(function() {
   $('input[name=begin]').attr('value', $begin);
   $('input[name=end]').attr('value', $end);
 });
+
+// Editions des Rappels
 
 $('.editRemind').click(function() {
   $('#remindEditModal').modal();

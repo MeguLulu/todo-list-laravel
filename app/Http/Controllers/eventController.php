@@ -17,8 +17,10 @@ class eventController extends Controller
     */
     public function index()
     {
+      // Récupération des événements
         $task = Task::all();
         $remind = Remind::all();
+        // Tri des événements par date chronologique
         $to_do_list = $task->merge($remind)->sortBy(function($e) {
             return $e->date();
         });
@@ -34,16 +36,20 @@ class eventController extends Controller
     {
         $management->create($event_type, $data);
     }
+
+    // Action de mis à jour d'un événement
     public function updateEvent(EventManagement $management, $event_type, $id, $data = array())
     {
         $management->update($event_type, $id, $data);
     }
+
+    // Action de suppression d'un événement
     public function deleteEvent(EventManagement $management, $event_type, $id)
     {
         $management->delete($event_type, $id);
     }
 
-    // Action des reminds
+    // Action des Tâches
 
     /**
     * Affiche le formulaire pour créer une tâche
@@ -90,6 +96,7 @@ class eventController extends Controller
     */
     public function editTask($id)
     {
+        // Récupération de l'id
         $task = Task::find($id);
         return view('task.edit')->withTask($task);
     }
@@ -133,7 +140,7 @@ class eventController extends Controller
         $this->deleteEvent(app()['EventManagement'], 'task', $id);
     }
 
-    // Action des rappels
+    // Action des Rappels
 
     /**
     * Affiche le formulaire pour créer un rappel
@@ -178,7 +185,7 @@ class eventController extends Controller
     public function editRemind($id)
     {
         $remind = Remind::find($id);
-        return view('task.edit')->withTask($remind);
+        return view('remind.edit')->withTask($remind);
     }
 
     /**

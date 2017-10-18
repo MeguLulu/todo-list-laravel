@@ -759,8 +759,9 @@ module.exports = __webpack_require__(37);
 * includes Vue and other libraries. It is a great starting point when
 * building robust, powerful web applications using Vue and Laravel.
 */
-
+// Insertion de bootstrap et jQuery
 __webpack_require__(9);
+// Insertion des scripts de l'application
 $(function () {
   __webpack_require__(35);
   __webpack_require__(36);
@@ -31699,7 +31700,8 @@ $(".form_datetime").datetimepicker({
 /* 36 */
 /***/ (function(module, exports) {
 
-// Js pour afficher les modals
+// Affichage des formulaire de création d'un événement
+
 $('#createTask').click(function () {
   $('#taskModal').modal();
 });
@@ -31708,6 +31710,7 @@ $('#createRemind').click(function () {
   $('#remindModal').modal();
 });
 
+// Suppression des tâches
 $('.deleteTaskBtnModal').click(function () {
   var data_id = $(this).attr('data-id');
   console.log(data_id);
@@ -31733,9 +31736,10 @@ $('.deleteTaskBtnModal').click(function () {
       }
     });
   });
-
   return false;
 });
+
+// Suppression des Rappels
 
 $('.deleteRemindBtnModal').click(function () {
   var data_id = $(this).attr('data-id');
@@ -31762,9 +31766,10 @@ $('.deleteRemindBtnModal').click(function () {
       }
     });
   });
-
   return false;
 });
+
+// Edition des tâches
 
 $('.editTask').click(function () {
   $('#taskEditModal').modal();
@@ -31777,6 +31782,8 @@ $('.editTask').click(function () {
   $('input[name=begin]').attr('value', $begin);
   $('input[name=end]').attr('value', $end);
 });
+
+// Editions des Rappels
 
 $('.editRemind').click(function () {
   $('#remindEditModal').modal();

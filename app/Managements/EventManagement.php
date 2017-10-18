@@ -8,9 +8,12 @@ use App\Models\Remind;
 class EventManagement
 
 {
+  // Fonction pour créer un événement
   public function create($event_type, $data)
   {
     switch ($event_type) {
+
+      // Création d'une tâche
 
       case 'task':
 
@@ -20,6 +23,8 @@ class EventManagement
       return $task->save();
 
       break;
+
+      // Création d'un rappel
 
       case 'remind':
 
@@ -32,9 +37,14 @@ class EventManagement
 
     }
   }
+
+  // Fonction pour mettre à jour un événement
+
   public function update($event_type, $id, $data)
   {
     switch ($event_type) {
+
+      // Mis à jour d'une tâche
 
       case 'task':
 
@@ -47,6 +57,8 @@ class EventManagement
       return $task->save();
 
       break;
+
+      // Mis à jour d'un rappel
 
       case 'remind':
 
@@ -63,9 +75,13 @@ class EventManagement
     }
   }
 
+  // Fonction pour supprimer un événement
+
   public function delete($event_type, $id)
   {
     switch ($event_type) {
+
+      // Suppression d'une tâche
 
       case 'task':
 
@@ -75,12 +91,14 @@ class EventManagement
 
       break;
 
+      // Suppression d'un rappel
+
       case 'remind':
 
       $remind = Remind::find($id);
 
       $remind->delete();
-      
+
       break;
 
     }
