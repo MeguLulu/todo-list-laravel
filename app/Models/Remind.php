@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Remind extends Model
 {
-  // Renvoie de la date pour le tri
+  // Renvoie la date pour le tri
   public function date() {
     return $this->day;
   }
+
 }
