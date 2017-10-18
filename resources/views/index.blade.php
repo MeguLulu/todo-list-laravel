@@ -36,9 +36,9 @@
               <strong>{{$event->title}}</strong>
               <span class="label label-info pull-right"><i class="fa fa-flag" aria-hidden="true"></i> Task</span>
               <div class="row">
-                <span class="col-xs-12 col-md-6"><strong>Date :</strong> {{ (date("l d F Y", strtotime($event->date()) ) ) }}</span>
-                <span class="col-xs-6 col-md-3"><strong>Start at :</strong> {{ (date("g a", strtotime($event->date()) ) ) }}</span>
-                <span class="col-xs-6 col-md-3"><strong>End at :</strong> {{ (date("g a", strtotime($event->end) ) ) }}</span>
+                <span class="col-xs-12"><strong>Date :</strong> {{ (date("l d F Y", strtotime($event->date()) ) ) }}</span>
+                <span class="col-xs-6"><strong>Start at :</strong> {{ (date("g a", strtotime($event->date()) ) ) }}</span>
+                <span class="col-xs-6"><strong>End the :</strong> {{ (date("d/m/y", strtotime($event->end) ) ) }} at {{ (date("g a", strtotime($event->end) ) ) }} </span>
               </div>
               <div class="row btn-action-group">
                 <a href="#"
