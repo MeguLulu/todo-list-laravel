@@ -1,5 +1,5 @@
 <!-- Modal Create-->
-<div class="modal fade remindEditModal" tabindex="-1" role="dialog" aria-labelledby="remindEditModal" aria-hidden="true">
+<div class="modal fade" id="remindEditModal" tabindex="-1" role="dialog" aria-labelledby="remindEditModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

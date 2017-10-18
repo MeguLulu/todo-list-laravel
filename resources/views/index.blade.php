@@ -25,7 +25,16 @@
                 <span class="col-md-4">End at : {{ (date("g a", strtotime($event->end) ) ) }}</span>
               </div>
               <div class="row btn-action-group">
-                <a href="#" class="btn btn-xs btn-success btn-align">Edit</a>
+                <a href="#"
+                data-id="{{$event->id}}"
+                data-title="{{$event->title}}"
+                data-begin="{{$event->begin}}"
+                data-end="{{$event->end}}"
+                data-toggle="modal"
+                data-target="taskEditModal"
+                class="editTask btn btn-xs btn-success btn-align"
+                title="Edit">
+                Edit</a>
                 <a href="#" class="btn btn-xs btn-danger deleteTask" data-id='{{$event->id}}'>Delete</a>
               </div>
             </li>
@@ -37,7 +46,15 @@
                 <span class="col-md-4">Date : {{ (date("l d F Y", strtotime($event->date()) ) ) }}</span>
               </div>
               <div class="row btn-action-group">
-                <a href="#" class="btn btn-xs btn-success btn-align">Edit</a>
+                <a href="#"
+                data-id="{{$event->id}}"
+                data-title="{{$event->title}}"
+                data-day="{{$event->day}}"
+                data-toggle="modal"
+                data-target="remindEditModal"
+                class="editRemind btn btn-xs btn-success btn-align"
+                title="Edit">
+                Edit</a>
                 <a href="#" class="btn btn-xs btn-danger deleteRemind" data-id='{{$event->id}}'>Delete</a>
               </div>
             </li>
@@ -47,83 +64,14 @@
       </ul>
     </div>
 
-</div>
+  </div>
+  {{-- Modals --}}
+  @include('modals.taskModal')
+  @include('modals.remindModal')
+  @if (isset($event))
+    @include('modals.taskEditModal')
+    @include('modals.remindEditModal')
+  @endif
 @endsection
-{{-- Modals --}}
-@include('modals.taskModal')
-@include('modals.remindModal')
-@if (isset($event))
-  @include('modals.taskEditModal')
-  @include('modals.remindEditModal')
-@endif
 @section('javascript')
-  <script>
-
-  $(function(){
-    // Js pour afficher les modals
-
-    $('#createTask').click(function() {
-      $('#taskModal').modal();
-    });
-
-    $('#createRemind').click(function() {
-      $('#remindModal').modal();
-    });
-
-    $('.deleteTask').on('click', function(e) {
-      var $token = $('meta[name="csrf-token"]').attr('content');
-      var $data_id = $('.deleteTask').attr('data-id');
-      // alert('ok');
-      $.ajax({
-        url: '{{ url('/task') }}'+'/'+ $data_id +'/delete',
-        type: "post",
-        // data: { _method:"DELETE" },
-        data: {
-            "_token": $token,
-            "_method":"DELETE"
-        },
-        success: function( msg ) {
-          $('[data-type=task][data-id='+$data_id+']').remove();
-        },
-        error: function( data ) {
-          if ( data.status === 422 ) {
-            toastr.error('Cannot delete the category');
-          }
-        }
-      });
-
-      return false;
-    });
-
-    $('.editTask').click(function() {
-      $('.taskEditModal').modal();
-      var $id = $(this).attr('data-id');
-      var $title = $(this).attr('data-title');
-      var $begin = $(this).attr('data-begin');
-      var $end = $(this).attr('data-end');
-      $('.modal-form').attr('action', '/task/'+$id+'/update');
-      $('input[name=title]').attr('value', $title);
-      $('input[name=begin]').attr('value', $begin);
-      $('input[name=end]').attr('value', $end);
-    });
-
-    $('.editRemind').click(function() {
-      $('.remindEditModal').modal();
-      var $id = $(this).attr('data-id');
-      var $title = $(this).attr('data-title');
-      var $date = $(this).attr('data-date');
-      $('.modal-form').attr('action', '/remind/'+$id+'/update');
-      $('input[name=title]').attr('value', $title);
-      $('input[name=date]').attr('value', $date);
-    });
-
-    // Js pour afficher le dateTime Picker
-    $(".form_datetime").datetimepicker({
-      autoclose: true,
-      todayBtn: true,
-      minuteStep: 10
-    });
-
-  })
-  </script>
 @endsection

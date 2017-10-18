@@ -237,5 +237,7 @@ class eventController extends Controller
     public function destroyRemind($id)
     {
         $this->deleteEvent(app()['EventManagement'], 'remind', $id);
+
+
     }
 }
