@@ -74,7 +74,7 @@ class EventManagement
 
       $task->delete();
 
-      return redirect()->route('index');
+      // return redirect()->route('index');
 
       break;
 
@@ -84,7 +84,7 @@ class EventManagement
 
       $remind->delete();
 
-      return redirect()->route('index');
+      // return redirect()->route('index');
 
       break;
 

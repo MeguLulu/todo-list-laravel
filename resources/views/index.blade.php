@@ -15,79 +15,38 @@
     <div class="content-event">
       <ul class="list-event">
         @foreach ($to_do_list as $event)
-          <li
-          class="li-item
-          @if ($event instanceof App\Models\Task) li-task
-          @elseif ($event instanceof App\Models\Remind) li-remind @endif">
-            {{$event->title}}
-
-            @if ($event instanceof App\Models\Task)
+          @if ($event instanceof App\Models\Task)
+            <li class="li-item li-task" data-type='task' data-id="{{$event->id}}">
+              {{$event->title}}
               <span class="label label-info pull-right">Task</span>
-            @elseif ($event instanceof App\Models\Remind)
+              <div class="row">
+                <span class="col-md-4">Date : {{ (date("l d F Y", strtotime($event->date()) ) ) }}</span>
+                <span class="col-md-4">Start at : {{ (date("g a", strtotime($event->date()) ) ) }}</span>
+                <span class="col-md-4">End at : {{ (date("g a", strtotime($event->end) ) ) }}</span>
+              </div>
+              <div class="row btn-action-group">
+                <a href="#" class="btn btn-xs btn-success btn-align">Edit</a>
+                <a href="#" class="btn btn-xs btn-danger deleteTask" data-id='{{$event->id}}'>Delete</a>
+              </div>
+            </li>
+          @elseif ($event instanceof App\Models\Remind)
+            <li class="li-item li-remind" data-type='remind' data-id="{{$event->id}}">
+              {{$event->title}}
               <span class="label label-warning pull-right">Remind</span>
-            @endif
-            <br>
-            <div class="row">
-            <span class="col-md-4">Date : {{ (date("l d F Y", strtotime($event->date()) ) ) }}</span>
-            @if ($event instanceof App\Models\Task)
-              <span class="col-md-4">Start at : {{ (date("g a", strtotime($event->date()) ) ) }}</span>
-              <span class="col-md-4">End at : {{ (date("g a", strtotime($event->end) ) ) }}</span>
-            @endif
-          </div>
-          <div class="row btn-action-group">
-            <a href="#" class="btn btn-xs btn-success btn-align">Edit</a>
-            <a href="#" class="btn btn-xs btn-danger">Delete</a>
-          </div>
-          </li>
+              <div class="row">
+                <span class="col-md-4">Date : {{ (date("l d F Y", strtotime($event->date()) ) ) }}</span>
+              </div>
+              <div class="row btn-action-group">
+                <a href="#" class="btn btn-xs btn-success btn-align">Edit</a>
+                <a href="#" class="btn btn-xs btn-danger deleteRemind" data-id='{{$event->id}}'>Delete</a>
+              </div>
+            </li>
+          @endif
           {{-- <hr> --}}
         @endforeach
       </ul>
     </div>
-    @foreach ($to_do_list as $event)
 
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          @if ($event instanceof App\Models\Task)
-            <span class="label label-info">Task</span>
-          @elseif ($event instanceof App\Models\Remind)
-            <span class="label label-warning">Remind</span>
-          @endif
-          <h4>{{$event->title}}</h4>
-          <h4>{{ (date("l d F Y", strtotime($event->date()) ) ) }}</h4>
-
-        </div>
-        <div class="panel-body panel-fix">
-
-        </div>
-        <div class="panel-footer">
-          {{-- {{route('task.edit', $event->id)}} --}}
-          @if ($event instanceof App\Models\Task)
-            <a href="#"
-            {{-- data-hover="tooltip" --}}
-            data-id="{{$event->id}}"
-            data-title="{{$event->title}}"
-            data-begin="{{$event->begin}}"
-            data-end="{{$event->end}}"
-            data-toggle="modal"
-            class="editTask btn btn-warning btn-sm"
-            title="Edit">
-            Edit</a>
-          @elseif ($event instanceof App\Models\Remind)
-            <a href="#"
-            data-hover="tooltip"
-            {{-- data-placement="top" --}}
-            data-id="{{$event->id}}"
-            data-title="{{$event->title}}"
-            data-day="{{$event->day}}"
-            data-toggle="modal"
-            class="editRemind btn btn-warning btn-sm"
-            title="Edit">
-            Edit</a>
-          @endif
-        </button>
-      </div>
-    </div>
-  @endforeach
 </div>
 @endsection
 {{-- Modals --}}
@@ -109,6 +68,31 @@
 
     $('#createRemind').click(function() {
       $('#remindModal').modal();
+    });
+
+    $('.deleteTask').on('click', function(e) {
+      var $token = $('meta[name="csrf-token"]').attr('content');
+      var $data_id = $('.deleteTask').attr('data-id');
+      // alert('ok');
+      $.ajax({
+        url: '{{ url('/task') }}'+'/'+ $data_id +'/delete',
+        type: "post",
+        // data: { _method:"DELETE" },
+        data: {
+            "_token": $token,
+            "_method":"DELETE"
+        },
+        success: function( msg ) {
+          $('[data-type=task][data-id='+$data_id+']').remove();
+        },
+        error: function( data ) {
+          if ( data.status === 422 ) {
+            toastr.error('Cannot delete the category');
+          }
+        }
+      });
+
+      return false;
     });
 
     $('.editTask').click(function() {
@@ -139,6 +123,7 @@
       todayBtn: true,
       minuteStep: 10
     });
+
   })
   </script>
 @endsection

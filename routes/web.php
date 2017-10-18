@@ -49,7 +49,7 @@ Route::any('/task/{id}/update', [
     'uses' => 'eventController@updateTask',
     'as' => 'task.update'
 ]);
-Route::get('/task/{id}/delete', [
+Route::any('/task/{id}/delete', [
     'uses' => 'eventController@destroyTask',
     'as' => 'task.delete'
 ]);
@@ -77,7 +77,7 @@ Route::any('/remind/{id}/update', [
     'uses' => 'eventController@updateRemind',
     'as' => 'remind.update'
 ]);
-Route::get('/remind/{id}/delete', [
+Route::any('/remind/{id}/delete', [
     'uses' => 'eventController@destroyRemind',
     'as' => 'remind.delete'
 ]);
