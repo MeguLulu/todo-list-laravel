@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 /* Configuration général du css */
 .content {
   margin-top: 32px;
@@ -90,4 +91,16 @@ h1 {
 
 .btn-form {
   margin-top: 20px;
+}
+
+/* Footer */
+.profile-img {
+  height: 200px;
+}
+.footer-text {
+  text-align: center;
+  display: inline;
+  font-family: 'Raleway', sans-serif;
+  font-size:20px;
+  color: rgb(122, 122, 122);
 }

@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Todo List</title>
+    {{-- Bootstrap Css --}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     {{-- DateTime Picker Bootstrap --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/smalot-bootstrap-datetimepicker/2.4.4/css/bootstrap-datetimepicker.min.css">
     {{-- Main Css --}}
@@ -33,9 +35,10 @@
         </div>
       </div>
     </div>
-    
+
     {{-- Pied de page du site --}}
     <footer>
+      @yield('footer')
     </footer>
     @yield('javascript')
   </body>
