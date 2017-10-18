@@ -13,7 +13,7 @@ $('.deleteBtnModal').click(function() {
 
 $('.deleteTask').on('click', function(e) {
   var token = $('meta[name="csrf-token"]').attr('content');
-  var data_id = $('.deleteTask').attr('data-id');
+  var data_id = $('.deleteBtnModal').attr('data-id');
   // alert('ok');
   $.ajax({
     // url: '{{ url('/task') }}'+'/'+ $data_id +'/delete',
@@ -26,8 +26,11 @@ $('.deleteTask').on('click', function(e) {
     },
     success: function( msg ) {
       $("[data-type='task'][data-id="+data_id+"]").remove();
+      $('.menu-todo').append('<div class="alert alert-success"><p>Your task has been deleted with success.</p></div>');
+      $('#taskDeleteModal').modal('toggle');
     },
     error: function( data ) {
+      $('.menu-todo').append('<div class="alert alert-danger"><p>Cannot delete your task. (error)</p></div>');
     }
   });
 
