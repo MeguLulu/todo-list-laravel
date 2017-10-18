@@ -32,6 +32,15 @@ h1 {
   margin-top: 20px;
 }
 /* Affichage de la liste todo */
+.block-todo {
+
+  background: whitesmoke;
+  padding: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  box-shadow: inset 1px 1px 0 white;
+  max-height: 550px;
+}
 .list-event {
   margin: 0 auto;
   padding: 0;

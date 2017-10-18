@@ -15,7 +15,8 @@ class EventManagement
       case 'task':
 
       $task = Task::create($data);
-
+      
+      session()->flash('success', 'Your task has been created with success.');
       return $task->save();
 
       break;
@@ -24,6 +25,7 @@ class EventManagement
 
       $remind = Remind::create($data);
 
+      session()->flash('success', 'Your remind has been created with success.');
       return $remind->save();
 
       break;
@@ -41,6 +43,7 @@ class EventManagement
       $task->begin = $data['begin'];
       $task->end = $data['end'];
 
+      session()->flash('success', 'Your task has been updated with success.');
       return $task->save();
 
       break;
@@ -52,6 +55,7 @@ class EventManagement
       $remind->title = $data['title'];
       $remind->day = $data['day'];
 
+      session()->flash('success', 'Your remind has been updated with success.');
       return $remind->save();
 
       break;

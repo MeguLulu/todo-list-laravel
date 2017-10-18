@@ -8,9 +8,16 @@
 
   {{-- Todo List Panel --}}
   <div class="col-md-8 col-md-offset-2 block-todo">
+    <div class="row menu-todo">
 
-    <a href="#" id="createTask" class="btn btn-info btn-sm">Create Task</a>
-    <a href="#" id="createRemind" class="btn btn-warning btn-sm">Create Remind</a>
+      <a href="#" id="createTask" class="btn btn-info btn-sm">Create Task</a>
+      <a href="#" id="createRemind" class="btn btn-warning btn-sm">Create Remind</a>
+      @if (session()->has('success'))
+        <div class="alert alert-success">
+          <p>{{session()->get('success')}}</p>
+        </div>
+      @endif
+    </div>
     {{-- Todo Final Edition --}}
     <div class="content-event">
       <ul class="list-event">
