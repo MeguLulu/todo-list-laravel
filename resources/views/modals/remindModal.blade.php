@@ -11,8 +11,10 @@
                 {!! Form::open(array('route' => 'remind.store', 'class' => 'form-group row')) !!}
                   {{ Form::label('title', 'Title:') }}
                   {{ Form::text('title', null, array('class' => 'form-control', 'placeholder' => 'Enter your title'))}}
+                  <br>
                   {{ Form::label('day', 'Date:') }}
                   {{ Form::date('day', \Carbon\Carbon::now()) }}
+                  <br>
                   {{ Form::submit('Create new remind', array('class' => 'btn btn-primary btn-form')) }}
 
                 {!! Form::close() !!}
