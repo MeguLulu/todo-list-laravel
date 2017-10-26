@@ -26,10 +26,11 @@ class eventController extends Controller
     */
     public function index()
     {
-      // Récupération des événements
+        // Récupération des événements
         $tasks = Task::all();
         $reminds = Remind::all();
 
+        // Tri des événements par date
         $to_do_list = $tasks->toBase()->merge($reminds)->sortBy(function($e) {
             return $e->date();
         });
