@@ -31713,7 +31713,6 @@ $('#createRemind').click(function () {
 // Suppression des tâches
 $('.deleteTaskBtnModal').click(function () {
   var data_id = $(this).attr('data-id');
-  console.log(data_id);
   $('#taskDeleteModal').modal();
   $('.deleteTask').unbind('click');
   $('.deleteTask').click(function (e) {

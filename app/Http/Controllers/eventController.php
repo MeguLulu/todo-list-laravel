@@ -10,6 +10,15 @@ use App\Managements\EventManagement;
 
 class eventController extends Controller
 {
+    // public function dateItem($item) {
+    //     // if ($item instanceof Task) {
+    //     //     return $this->begin;
+    //     // }
+    //     // if ($item instanceof Remind) {
+    //     //     return $this->day;
+    //     // }
+    // }
+
     /**
     * Affiche la liste des tâches et rappels
     *
@@ -18,10 +27,10 @@ class eventController extends Controller
     public function index()
     {
       // Récupération des événements
-        $task = Task::all();
-        $remind = Remind::all();
-        // Tri des événements par date chronologique
-        $to_do_list = $task->merge($remind)->sortBy(function($e) {
+        $tasks = Task::all();
+        $reminds = Remind::all();
+
+        $to_do_list = $tasks->toBase()->merge($reminds)->sortBy(function($e) {
             return $e->date();
         });
 
