@@ -10,15 +10,6 @@ use App\Managements\EventManagement;
 
 class eventController extends Controller
 {
-    // public function dateItem($item) {
-    //     // if ($item instanceof Task) {
-    //     //     return $this->begin;
-    //     // }
-    //     // if ($item instanceof Remind) {
-    //     //     return $this->day;
-    //     // }
-    // }
-
     /**
     * Affiche la liste des tâches et rappels
     *
