@@ -94,7 +94,6 @@
 {{-- Footer --}}
 @section('footer')
   <div class="col-sm-offset-1 col-md-offset-2">
-  <img class='profile-img' src="/img/chibi.png" alt="">
   <p class="text-center footer-text">Feel free to ask me anything !</p>
 </div>
 @endsection
